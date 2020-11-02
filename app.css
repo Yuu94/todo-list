@@ -1,0 +1,12 @@
+.done > .done-btn {
+    color: green;
+    cursor:pointer;
+}
+.no-done > .done-btn {
+    color: gray;
+    cursor:pointer;
+}
+.delete-btn {
+    color: red;
+    cursor:pointer;
+}

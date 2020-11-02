@@ -4,42 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="dist/bundle.js" defer></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <script src="dist/bundle.js" defer></script>
+    <link rel="stylesheet" href="app.css">
 
     <title>ToDo List</title>
-    
-    <style>
-        .done > .done-btn {
-            color: green;
-            cursor:pointer;
-        }
-        .no-done > .done-btn {
-            color: gray;
-            cursor:pointer;
-        }
-        .delete-btn {
-            color: red;
-            cursor:pointer;
-        }
-    </style>
-    
 </head>
 <body>
     <h1>ToDo List</h1> 
-    <template id="todo-input">
-        <table align="center">
-            <tbody class="input-table">
-                <tr>
-                    <td>ToDo：</td>
-                    <td><input type="text" class="todo" ></td>
-                    <td><input type="date" class="deadline"></td>
-                    <td><button class="submit">登録</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </template>
+    <table align="center">
+        <tbody class="input-table">
+            <tr>
+                <td>ToDo：</td>
+                <td><input type="text" class="todo" ></td>
+                <td><input type="date" class="deadline"></td>
+                <td><button class="submit">登録</button></td>
+            </tr>
+        </tbody>
+    </table>
     <hr>
     <h2>未完了</h2>
     <table align="center" border="1" width="70%">
@@ -67,60 +49,6 @@
         </thead>
         <tbody class="done-table">
         </tbody>
-    </table> 
-
-    <div id="app"></div>
-
-    <script type="text/javascript" defer>
-        $('.submit').on('click', function() {
-            const todo = $('.todo').val();
-            const deadline = $('.deadline').val();
-
-            if (deadline != ""){
-                element =  `
-                    <tr class="no-done">
-                        <td align="center">${deadline}</td>
-                        <td>${todo}</td>
-                        <td class="done-btn" align="center"><i class="fas fa-check fa-2x"></i></td>
-                        <td class="delete-btn" align="center"><i class="far fa-trash-alt fa-2x"></i></td>
-                    </tr>
-                `;
-
-                $('.no-done-table').append(element);
-
-                $('.todo').val("");
-                $('.deadline').val("");
-            }
-        });
-
-
-        $(document).on('click', '.done-btn', function(){
-            let todo_element = $(this).parent();
-            let beforeClass, afterClass;
-
-            if (todo_element.attr("class") == "done"){
-                beforeClass = "done";
-                afterClass = "no-done";
-            }else{
-                beforeClass = "no-done";
-                afterClass = "done";
-            }
-            
-            todo_element.removeClass(beforeClass);
-            todo_element.addClass(afterClass);
-
-            if (afterClass == "done"){
-                $('.done-table').append(todo_element);
-            }else{
-                $('.no-done-table').append(todo_element); 
-            }
-        });
-
-
-        $(document).on('click', '.delete-btn', function(){
-            $(this).parent().remove()
-        });
-
-    </script>
+    </table>    
 </body>
 </html>
